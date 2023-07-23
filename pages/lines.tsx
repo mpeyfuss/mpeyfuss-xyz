@@ -51,10 +51,10 @@ export default function Lines() {
         Lines is an exploration of emotion and human connection through generative lines.
         </p>
         <p>
-        Using generative art techniques, I am able to create different types of lines that resemble "pen and ink" techniques that are traditionally made with various writing instruments.
+        Using generative art techniques, I am able to create different types of lines that resemble &apos;pen and ink&apos; techniques that are traditionally made with various writing instruments.
         </p>
         <p>
-        While the project started off as an exploration of metaphysical "pen and ink", the true purpose is to explore emotion and human connection in a post-physical world with these lines.
+        While the project started off as an exploration of metaphysical &apos;pen and ink&apos;, the true purpose is to explore emotion and human connection in a post-physical world with these lines.
         </p>
         <p>
         The first three lines in this collection were created on my own. Each additional line will be co-created. But what does that mean?
