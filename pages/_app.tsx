@@ -200,6 +200,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     promptLabelClassName="!text-red !font-mono"
                     inputClassName="!text-white !font-mono !align-middle"
                     inputAreaClassName="!items-center"
+                    ignoreCommandCase={true}
                   />
                 </Dialog.Panel>
               </Transition.Child>
