@@ -2,7 +2,7 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { VT323, Space_Mono } from 'next/font/google'
 import Navigation from '@/components/Navigation';
-import { useEffect, useState, Fragment } from 'react';
+import { useEffect, useState, Fragment} from 'react';
 import throttle from 'lodash/throttle';
 import { Dialog, Transition } from '@headlessui/react';
 // @ts-ignore
@@ -123,15 +123,25 @@ export default function App({ Component, pageProps }: AppProps) {
       },
       50
     );
+    const touchHandler = throttle(
+      ({ touches }) => {
+        if (touches.length === 3) {
+          setShowTerminal((latestShowTerminal) => !latestShowTerminal);
+        }
+      },
+      50
+    );
     document.addEventListener('mousemove', mouseMoveHandler);
     document.addEventListener('mousedown', mouseDownHandler);
     document.addEventListener('mouseup', mouseUpHandler);
     document.addEventListener('keydown', keydownHandler);
+    document.addEventListener('touchstart', touchHandler);
     return () => {
       document.removeEventListener('mousemove', mouseMoveHandler);
       document.removeEventListener('mousedown', mouseDownHandler);
       document.removeEventListener('mouseup', mouseUpHandler);
       document.removeEventListener('keydown', keydownHandler);
+      document.removeEventListener('touchstart', touchHandler);
     }
   }, []);
 
@@ -183,7 +193,7 @@ export default function App({ Component, pageProps }: AppProps) {
                   <Terminal
                     commands={commands}
                     welcomeMessage={
-                      `Welcome, anon. You have found the terminal. Secrets can be uncovered in here, in due time. Type in 'help' to start. More commands will come. For now, have fun. You may leave the same way you entered. (ctrl + shift + T)`}
+                      `Welcome, anon. You have found the terminal. Secrets can be uncovered in here, in due time. Type in 'help' to start. More commands will come. For now, have fun.`}
                     promptLabel={'anon~'}
                     className="!bg-black w-full h-full"
                     contentClassName="!bg-black !font-mono !space-y-4 !text-light-gray"
