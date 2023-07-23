@@ -75,7 +75,7 @@ export default function Home() {
           I was somewhat verbose, so I&apos;m surprised you&apos;re reading this.
         </p>
         <p>
-          Well, as a reward, try typing in &apos;cntrl + shift + T&apos;
+          Well, as a reward, try typing in &apos;cntrl + shift + T&apos; or tapping with three fingers.
         </p>
       </div>
     </div >
