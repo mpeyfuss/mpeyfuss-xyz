@@ -78,6 +78,7 @@ export default function Lines() {
             imageSrc={image}
             title={title}
             link={`https://opensea.io/assets/ethereum/0x4495e6f88b4c14c52d751f5232c31020fbdaaffe/${tokenId}`}
+            key={tokenId}
             />
         ))}
       </div>
