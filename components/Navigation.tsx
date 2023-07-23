@@ -20,7 +20,7 @@ export default function Navigation() {
           <Link href="/art" className="text-link font-vt text-black duration-150 ease-in hover:text-transparent bkg-rainbow">
             art
           </Link>
-          <a className="text-link font-vt text-black duration-150 ease-in hover:text-transparent bkg-rainbow">
+          <a href="https://mirror.xyz/mpeyfuss.eth" target="_blank" rel="noreferrer noopener" className="text-link font-vt text-black duration-150 ease-in hover:text-transparent bkg-rainbow">
             mirror
           </a>
         </div>
