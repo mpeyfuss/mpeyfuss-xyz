@@ -11,73 +11,72 @@ import Terminal from 'react-console-emulator';
 const vt323 = VT323({ weight: '400', subsets: ['latin'] });
 const space_mono = Space_Mono({ weight: '400', subsets: ['latin'] });
 
-const commands = {
-  echo: {
-    description: 'Echo a passed string.',
-    usage: 'echo <string>',
-    fn: (...args: string[]) => args.join(' ')
-  },
-  line: {
-    description: 'Draw a crappy line.',
-    usage: 'line',
-    fn: () => {
-      const num = Math.round(Math.random() * 10);
-      let result = '〰️';
-      for (let i = 0; i < num; i++) {
-        result = result + '〰️';
-      }
-      return result;
-    }
-  },
-  lines: {
-    description: 'Information about my Lines.',
-    usage: 'lines',
-    fn: () => `Lines is an exploration of emotion and human connection through generative lines.
-    Using generative art techniques, I am able to create different types of lines that resemble "pen and ink" techniques that are traditionally made with various writing instruments.
-    While the project started off as an exploration of metaphysical "pen and ink", the true purpose is to explore emotion and human connection in a post-physical world with these lines.
-    The first three lines in this collection were created on my own. Each additional line will be co-created. But what does that mean?
-    These pieces do not cost any form of tender, rather the co-creator gives me some of their time on a call and in return, gets some human connection, in addition to their custom Line.
-    Each line represents the bond between our souls that was formed during co-creation. Minted on the Ethereum blockchain and metadata hosted on Arweave, these bonds will not break on or off chain.
-    I hope you feel something, anon. 〰️`
-  },
-  mystery: {
-    description: 'Who knows?',
-    usage: 'mystery',
-    fn: () => {
-      const num = Math.round(Math.random() * 10);
-      switch (num) {
-        case 0:
-          window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley';
-          return;
-        case 1:
-          return 'get rekt'
-        case 2:
-          return 'There are two types of people in this world. Those who can extrapolate from incomplete data,'
-        case 3:
-          window.location.href = 'https://www.yahoo.com/lifestyle/1990-beanie-babies-collection-worth-124037918.html';
-          return;
-        case 4:
-          window.location.href = 'https://pastel.network/the-25-best-nft-memes-will-make-you-cry-laughing/';
-          return;
-        case 5:
-          return 'I never thought hamster racing would be so great. Then again, people were betting on digital horses racing 😂'
-        case 6:
-          return 'Remember the Mekaverse sale? That was cray.'
-        case 7:
-          return 'dm me with your answer: final form Zuck lizard vs iron man Musk'
-        case 8:
-          return 'I hate that I still own a cryptodickbutt. But I don\'t want to take a loss on it'
-        case 9:
-          return 'Is the earth flat?'
-        case 10:
-          return 'Python is the greatest programming language out there.'
-      }
-    }
-  }
-}
-
 export default function App({ Component, pageProps }: AppProps) {
   const [showTerminal, setShowTerminal] = useState(false);
+  const commands = {
+    exit: {
+      description: 'Exit the terminal',
+      usage: 'exit',
+      fn: () => setShowTerminal(false)
+    },
+    echo: {
+      description: 'Echo a passed string.',
+      usage: 'echo <string>',
+      fn: (...args: string[]) => args.join(' ')
+    },
+    line: {
+      description: 'Draw a crappy line.',
+      usage: 'line',
+      fn: () => {
+        const num = Math.round(Math.random() * 36);
+        return '〰️' + '〰️'.repeat(num);
+      }
+    },
+    lines: {
+      description: 'Information about my Lines.',
+      usage: 'lines',
+      fn: () => `Lines is an exploration of emotion and human connection through generative lines.
+      Using generative art techniques, I am able to create different types of lines that resemble "pen and ink" techniques that are traditionally made with various writing instruments.
+      While the project started off as an exploration of metaphysical "pen and ink", the true purpose is to explore emotion and human connection in a post-physical world with these lines.
+      The first three lines in this collection were created on my own. Each additional line will be co-created. But what does that mean?
+      These pieces do not cost any form of tender, rather the co-creator gives me some of their time on a call and in return, gets some human connection, in addition to their custom Line.
+      Each line represents the bond between our souls that was formed during co-creation. Minted on the Ethereum blockchain and metadata hosted on Arweave, these bonds will not break on or off chain.
+      I hope you feel something, anon. 〰️`
+    },
+    mystery: {
+      description: 'Who knows?',
+      usage: 'mystery',
+      fn: () => {
+        const num = Math.round(Math.random() * 10);
+        switch (num) {
+          case 0:
+            window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley';
+            return;
+          case 1:
+            return 'get rekt'
+          case 2:
+            return 'There are two types of people in this world. Those who can extrapolate from incomplete data,'
+          case 3: ;
+            return 'beanie babies';
+          case 4:
+            return '🚀'.repeat(Math.round(Math.random() * 37));
+          case 5:
+            return 'betting on hamsters racing is a thing. yes. absurd, yet awesome.'
+          case 6:
+            return 'you should watch Formula 1'
+          case 7:
+            return 'dm me with your answer: final form Zuck lizard vs iron man Musk'
+          case 8:
+            return 'how do you get a line?'
+          case 9:
+            return '37'
+          case 10:
+            return "bet you can't guess what I'm eating right now"
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     const mouseMoveHandler = throttle(
       ({ pageX, pageY }: { pageX: number, pageY: number }) => {
@@ -184,7 +183,7 @@ export default function App({ Component, pageProps }: AppProps) {
                   <Terminal
                     commands={commands}
                     welcomeMessage={
-                      `Welcome, anon. You have found a secret terminal. Type in 'help' to start. More commands will come. For now, have fun. You may leave the same way you entered. (ctrl + shift + T)`}
+                      `Welcome, anon. You have found the terminal. Secrets can be uncovered in here, in due time. Type in 'help' to start. More commands will come. For now, have fun. You may leave the same way you entered. (ctrl + shift + T)`}
                     promptLabel={'anon~'}
                     className="!bg-black w-full h-full"
                     contentClassName="!bg-black !font-mono !space-y-4 !text-light-gray"
