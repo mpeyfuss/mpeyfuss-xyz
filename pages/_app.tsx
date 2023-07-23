@@ -5,6 +5,7 @@ import Navigation from '@/components/Navigation';
 import { useEffect, useState, Fragment } from 'react';
 import throttle from 'lodash/throttle';
 import { Dialog, Transition } from '@headlessui/react';
+// @ts-ignore
 import Terminal from 'react-console-emulator';
 
 const vt323 = VT323({ weight: '400', subsets: ['latin'] });
@@ -62,7 +63,7 @@ const commands = {
           return 'I never thought hamster racing would be so great. Then again, people were betting on digital horses racing 😂'
         case 6:
           return 'Remember the Mekaverse sale? That was cray.'
-        case 7: 
+        case 7:
           return 'dm me with your answer: final form Zuck lizard vs iron man Musk'
         case 8:
           return 'I hate that I still own a cryptodickbutt. But I don\'t want to take a loss on it'
@@ -178,10 +179,12 @@ export default function App({ Component, pageProps }: AppProps) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full h-full transform overflow-y-auto bg-black text-left align-middle shadow-xl transition-all ">
+                  {/* 
+                  // @ts-ignore */}
                   <Terminal
                     commands={commands}
                     welcomeMessage={
-`Welcome, anon. You have found a secret terminal. Type in 'help' to start. More commands will come. For now, have fun. You may leave the same way you entered. (ctrl + shift + T)`}
+                      `Welcome, anon. You have found a secret terminal. Type in 'help' to start. More commands will come. For now, have fun. You may leave the same way you entered. (ctrl + shift + T)`}
                     promptLabel={'anon~'}
                     className="!bg-black w-full h-full"
                     contentClassName="!bg-black !font-mono !space-y-4 !text-light-gray"
