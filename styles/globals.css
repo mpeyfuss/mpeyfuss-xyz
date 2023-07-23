@@ -2,26 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+* {
+  cursor: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html {
+  background-color: #FBFEFF;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.bkg-rainbow {
+  background: linear-gradient(to right, #EF474C, #F47D3D, #FBC056, #8DB37F, #2B82A3, #8E6AAD);
+  background-clip: text;
+}
+
+.bkg-rainbow-to-bottom {
+  background: linear-gradient(to bottom, #EF474C80, #F47D3D80, #FBC05680, #8DB37F80, #2B82A380, #8E6AAD80);
+}
+
+.brdr-rainbow {
+  border-image: linear-gradient(to right, #EF474C, #F47D3D, #FBC056, #8DB37F, #2B82A3, #8E6AAD);
 }
