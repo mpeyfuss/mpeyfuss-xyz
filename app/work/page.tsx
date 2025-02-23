@@ -25,12 +25,12 @@ const work = [
   },
 ];
 
-export default async () => {
+export default async function Work() {
   return (
     <PageWrapper className="">
       <div className="flex flex-wrap gap-8">
         {work.map((item) => (
-          <NextLink href={item.link} target="_blank">
+          <NextLink href={item.link} target="_blank" key={item.title}>
             <Card>
               <CardHeader>
                 <CardTitle>{item.title}</CardTitle>
@@ -42,4 +42,4 @@ export default async () => {
       </div>
     </PageWrapper>
   );
-};
+}

@@ -20,12 +20,12 @@ const posts = [
   },
 ];
 
-export default async () => {
+export default async function Blog() {
   return (
     <PageWrapper className="">
       <div className="flex flex-wrap gap-8">
         {posts.map((item) => (
-          <NextLink href={item.link} target="_blank">
+          <NextLink href={item.link} target="_blank" key={item.title}>
             <Card>
               <CardHeader>
                 <CardTitle>{item.title}</CardTitle>
@@ -37,4 +37,4 @@ export default async () => {
       </div>
     </PageWrapper>
   );
-};
+}

@@ -4,7 +4,7 @@ import { Paragraph, Title } from "@/components/ui/typography";
 import Image from "next/image";
 import NextLink from "next/link";
 
-export default async () => {
+export default async function Home() {
   return (
     <PageWrapper className="gap-y-10 md:mt-20 text-center">
       <div className="md:max-w-3xl flex flex-col gap-y-10 md:flex-row md:gap-x-10 items-center justify-center">
@@ -32,4 +32,4 @@ export default async () => {
       </div>
     </PageWrapper>
   );
-};
+}

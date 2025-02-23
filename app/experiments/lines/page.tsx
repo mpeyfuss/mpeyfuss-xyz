@@ -4,7 +4,7 @@ import { Paragraph, Title } from "@/components/ui/typography";
 import Image from "next/image";
 import NextLink from "next/link";
 
-export default async () => {
+export default async function Lines() {
   return (
     <PageWrapper className="gap-y-10 md:mt-10 mb-20 text-center">
       <Image
@@ -21,13 +21,13 @@ export default async () => {
       </Paragraph>
       <Paragraph>
         Using generative art techniques, I was able to create different types of
-        lines that resemble 'pen and ink' techniques that are traditionally made
-        with various writing instruments.
+        lines that resemble &apos;pen and ink&apos; techniques that are
+        traditionally made with various writing instruments.
       </Paragraph>
       <Paragraph>
-        While the project started off as an exploration of metaphysical 'pen and
-        ink', the true purpose is to explore emotion and human connection in a
-        post-physical world with these lines.
+        While the project started off as an exploration of metaphysical
+        &apos;pen and ink&apos;, the true purpose is to explore emotion and
+        human connection in a post-physical world with these lines.
       </Paragraph>
       <Paragraph>
         Each line created in this collection was created on a call with the
@@ -38,4 +38,4 @@ export default async () => {
       </NextLink>
     </PageWrapper>
   );
-};
+}

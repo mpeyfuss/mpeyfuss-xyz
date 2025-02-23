@@ -16,12 +16,12 @@ const experiments = [
   },
 ];
 
-export default async () => {
+export default async function Experiments() {
   return (
     <PageWrapper className="">
       <div className="flex flex-wrap gap-8">
         {experiments.map((item) => (
-          <NextLink href={item.link}>
+          <NextLink href={item.link} key={item.title}>
             <Card>
               <CardHeader>
                 <CardTitle>{item.title}</CardTitle>
@@ -33,4 +33,4 @@ export default async () => {
       </div>
     </PageWrapper>
   );
-};
+}
