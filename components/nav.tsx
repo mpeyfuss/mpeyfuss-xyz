@@ -1,3 +1,5 @@
+"use client";
+
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -9,36 +11,58 @@ import {
 import { cn } from "@/lib/utils";
 
 import { Link } from "@/components/ui/typography";
+import { usePathname } from "next/navigation";
 
 export const Navigation = () => {
+  const pathname = usePathname();
   return (
     <div className="w-full flex justify-center mt-4">
       <NavigationMenu className="">
         <NavigationMenuList>
           <NavigationMenuItem>
             <Link href="/" legacyBehavior passHref>
-              <NavigationMenuLink className={cn(navigationMenuTriggerStyle())}>
+              <NavigationMenuLink
+                className={cn(
+                  navigationMenuTriggerStyle(),
+                  pathname === "/" ? "text-link" : ""
+                )}
+              >
                 HOME
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="/work" legacyBehavior passHref>
-              <NavigationMenuLink className={cn(navigationMenuTriggerStyle())}>
+              <NavigationMenuLink
+                className={cn(
+                  navigationMenuTriggerStyle(),
+                  pathname.startsWith("/work") ? "text-link" : ""
+                )}
+              >
                 WORK
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="/experiments" legacyBehavior passHref>
-              <NavigationMenuLink className={cn(navigationMenuTriggerStyle())}>
+              <NavigationMenuLink
+                className={cn(
+                  navigationMenuTriggerStyle(),
+                  pathname.startsWith("/experiments") ? "text-link" : ""
+                )}
+              >
                 EXPERIMENTS
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link href="/blog" legacyBehavior passHref>
-              <NavigationMenuLink className={cn(navigationMenuTriggerStyle())}>
+              <NavigationMenuLink
+                className={cn(
+                  navigationMenuTriggerStyle(),
+                  pathname.startsWith("/blog") ? "text-link" : ""
+                )}
+              >
                 BLOG
               </NavigationMenuLink>
             </Link>

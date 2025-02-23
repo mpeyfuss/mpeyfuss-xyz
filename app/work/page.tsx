@@ -9,12 +9,12 @@ import NextLink from "next/link";
 
 const work = [
   {
-    title: "Transient Labs",
+    title: "transient.xyz",
     description: "Creator tooling unleashing creativity on the blockchain",
     link: "https://transient.xyz",
   },
   {
-    title: "Transient Dot Fun",
+    title: "transient.fun",
     description: "Highlighting the ecosystem of fun blockchain tools",
     link: "https://transient.fun",
   },
