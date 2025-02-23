@@ -8,7 +8,7 @@ export function resolveAbsoluteUrl(path: string) {
     : `http://localhost:${process.env.PORT || 3000}`;
   const baseUrl =
     process.env.VERCEL_ENV === 'production'
-      ? 'mpeyfuss.xyz'
+      ? 'https://mpeyfuss.xyz'
       : previewUrl;
 
   return `${baseUrl}${path}`;
