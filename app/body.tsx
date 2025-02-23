@@ -2,8 +2,9 @@ import { cn } from "@/lib/utils";
 import "./globals.css";
 import { Kode_Mono, Space_Mono } from "next/font/google";
 import { ReactNode } from "react";
-import { Navigation } from "@/components/navigation";
+
 import { ThemeProvider } from "@/components/theme-provider";
+import { Navigation } from "@/components/navigation";
 
 const titleFont = Kode_Mono({
   weight: ["400", "500", "600", "700"],
