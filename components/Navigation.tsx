@@ -8,7 +8,7 @@ import {
 
 import { cn } from "@/lib/utils";
 
-import { Link, Title } from "@/components/ui/typography";
+import { Link } from "@/components/ui/typography";
 
 export const Navigation = () => {
   return (

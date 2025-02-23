@@ -6,9 +6,11 @@ import { Navigation } from "@/components/navigation";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const titleFont = Kode_Mono({
-  weight: "400",
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--title-font",
+  display: "swap",
+  adjustFontFallback: false,
 });
 const bodyFont = Space_Mono({
   weight: "400",
