@@ -35,7 +35,17 @@ layout: layout.njk
         display: flex;
         column-gap: 1rem;
         margin-top: 1rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+
+        .hero {
+            flex-direction: column;
+            row-gap: 1rem;
+            align-items: center;
+            text-align: center;
+        }
     }
 </style>
 
@@ -46,25 +56,19 @@ layout: layout.njk
     <div>
         <p>My name is Marco.</p>
         <p>I'm building at intersection of art & technology.</p>
-        <p>I work with directly creators to bring their ideas to life.</p>
+        <p>I work with creators to bring their ideas to life.</p>
     </div>
 </div>
 
 <div class="section">
     <!-- <h2 style="margin-bottom:0.5rem;">Current Work</h2> -->
-    <p>I'm currently building <a href="https://transient.xyz" target="_blank"
-            style="text-decoration:underline; text-underline-offset: 4px;">Transient Labs</a>, a platform dedicated
+    <p>I'm currently building <a href="https://transient.xyz" target="_blank">Transient Labs</a>, a platform dedicated
         to helping creators push the boundaries of digital art. A lot of my focus is on how creators can use code and
-        the blockchain to push further and enhance their creativity. We don't work in "NFTs", we work on the frontier of
+        the blockchain to enhance their creativity. I don't work in "NFTs", I work on the frontier of
         digital art.
-    </p>
-    <p>
-        Not only do we enable digital objects to be sold and owned via the blockchain, but we specialize in creative
-        coding and making it accessible to all creators.
     </p>
     <div class="links">
         <a href="/about"><button>Learn More</button></a>
-        <a href="/portfolio"><button class="primary">See my work</button></a>
-
+        <!-- <a href="/portfolio"><button class="primary">See my work</button></a> -->
     </div>
 </div>

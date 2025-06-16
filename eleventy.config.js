@@ -8,13 +8,15 @@ export default async function (eleventyConfig) {
   eleventyConfig.addCollection("blog", function (collectionApi) {
     return collectionApi
       .getFilteredByTag("blog")
+      .filter((item) => item.data.published)
       .sort((a, b) => b.date - a.date);
   });
 
-  // add art + tech collection
-  eleventyConfig.addCollection("art_and_tech", function (collectionApi) {
+  // add tech collection
+  eleventyConfig.addCollection("tech", function (collectionApi) {
     return collectionApi
-      .getFilteredByTag("art+tech")
+      .getFilteredByTag("tech")
+      .filter((item) => item.data.published)
       .sort((a, b) => b.date - a.date);
   });
 
@@ -22,6 +24,7 @@ export default async function (eleventyConfig) {
   eleventyConfig.addCollection("portfolio", function (collectionApi) {
     return collectionApi
       .getFilteredByTag("portfolio")
+      .filter((item) => item.data.published)
       .sort((a, b) => b.date - a.date);
   });
 

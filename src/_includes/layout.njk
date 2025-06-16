@@ -22,6 +22,7 @@
 
   <style>
     :root {
+      --zinc: #09090b;
       --red-500: #EF4444;
       --amber-500: #F59E0B;
       --teal-500: #14B8A6;
@@ -38,23 +39,22 @@
     body {
       font-family: 'Inter', sans-serif;
       /* background: #fafafa; */
-      color: #09090b;
+      color: var(--zinc);
       margin: 0;
       padding: 0;
     }
 
     main {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
 
     .content-wrapper {
-      width: 100%;
-      max-width: 768px;
+      width: 90%;
+      max-width: 876px;
       margin-top: 4rem;
-      position: relative;
-      padding: 0rem 1rem;
-      margin-bottom: 4rem;
+      margin-bottom: 1rem;
     }
 
     h1 {
@@ -74,6 +74,13 @@
       font-size: 1.5rem;
     }
 
+    h5 {
+      font-size: 1.25rem;
+      text-align: center;
+      font-weight: 500;
+      font-style: italic;
+    }
+
     .gradient-text {
       font-weight: 600;
       background: linear-gradient(to right, var(--red-500), var(--amber-500), var(--teal-500), var(--violet-500));
@@ -89,13 +96,21 @@
 
     a {
       font-size: 1rem;
-      color: #09090b;
+      color: var(--amber-500);
       text-decoration: none;
     }
 
     a:hover {
       text-decoration: underline;
       text-underline-offset: 4px;
+    }
+
+    li {
+      margin: 1rem 0rem;
+    }
+
+    img {
+      max-width: 100%;
     }
 
     button {
@@ -128,6 +143,8 @@
     hr {
       border: 0.5px solid #d4d4d8;
       border-style: solid;
+      margin: 1rem 0rem;
+      width: 100%;
     }
 
     .nav {
@@ -175,18 +192,21 @@
       font-size: 0.9rem;
     }
 
-    .back-link {
-      position: absolute;
-      top: 0.5rem;
-      left: 0.5rem;
-      font-size: 0.8rem;
+    .social {
+      display: flex;
+      column-gap: 0.5rem;
+      align-items: center;
+      margin-bottom: 1rem;
     }
 
     @media (max-width: 768px) {
 
-      /* styles for screens 640px wide and smaller */
       .header-text {
         display: none;
+      }
+
+      .social {
+        margin-bottom: 4rem;
       }
     }
   </style>
@@ -201,8 +221,8 @@
       </div>
       <div class="nav-links">
         <a class="nav-link" style="color:var(--red-500);" href="/">Home</a>
-        <a class="nav-link" style="color:var(--amber-500);" href="/portfolio">Portfolio</a>
-        <a class="nav-link" style="color:var(--teal-500);" href="/art-and-tech">Art + Tech</a>
+        <!-- <a class="nav-link" style="color:var(--amber-500);" href="/portfolio">Portfolio</a> -->
+        <a class="nav-link" style="color:var(--teal-500);" href="/tech">Tech</a>
         <a class="nav-link" style="color:var(--violet-500);" href="/blog">Blog</a>
       </div>
     </div>
@@ -210,16 +230,15 @@
 
   <main>
     <div class="content-wrapper">
-      {% if tags and "blog" in tags %}
-      <a href="/blog" class="back-link">← Back to Blog</a>
-      {% endif %}
-      {% if tags and "art+tech" in tags %}
-      <a href="/art-and-tech" class="back-link">← Back to Art + Tech</a>
-      {% endif %}
-      {% if tags and "portfolio" in tags %}
-      <a href="/portfolio" class="back-link">← Back to Portfolio</a>
-      {% endif %}
       {{ content | safe }}
+    </div>
+    <hr />
+    <div class="social">
+      <a href="https://x.com/mpeyfuss" target="_blank" rel="noreferrer noopener">Twitter</a>
+      <p style="font-weight:600;margin:0;">//</p>
+      <a href="https://github.com/mpeyfuss" target="_blank" rel="noreferrer noopener">Github</a>
+      <p style="font-weight:600;margin:0;"> //</p>
+      <a href="https://www.linkedin.com/in/marcopeyfuss/" target="_blank" rel="noreferrer noopener">LinkedIn</a>
     </div>
   </main>
 </body>

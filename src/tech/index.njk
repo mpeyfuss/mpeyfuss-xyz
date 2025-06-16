@@ -56,8 +56,8 @@ title: Blog
     }
 
     .post-wrapper:hover {
-        border-color: var(--violet-500);
-        background-color: var(--violet-500);
+        border-color: var(--teal-500);
+        background-color: var(--teal-500);
     }
 
     @media (max-width: 1080px) {
@@ -73,13 +73,13 @@ title: Blog
     }
 </style>
 
-<h1 style="margin-bottom:0.5rem;">Blog</h1>
-<h4 class="gradient-text" style="text-align:center;margin-top:0.5rem;">Semi-coherent thoughts I scribbled down in haste
+<h1 style="margin-bottom:0.5rem;">Tech</h1>
+<h4 class="gradient-text" style="text-align:center;margin-top:0.5rem;">Technical analysis, code snippets, and more
 </h4>
 
 <div class="wrapper">
     <ul class="posts-wrapper">
-        {% for post in collections.blog %}
+        {% for post in collections.tech %}
         <li style="list-style-type:none;" class="post-wrapper">
             <a href="{{ post.url }}" class="post">
                 <img src="{{ post.data.card }}" alt="thumbnail" class="post-image" />
