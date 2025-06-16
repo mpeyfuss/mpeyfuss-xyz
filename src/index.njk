@@ -1,0 +1,74 @@
+---
+title: Home
+layout: layout.njk
+---
+
+<style>
+    .hero {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        column-gap: 2rem;
+        align-items: center;
+        margin-top: 4.25rem;
+    }
+
+    .pfp-img {
+        width: 20rem;
+        border-radius: 100%;
+    }
+
+    .section {
+        text-align: start;
+        width: 100%;
+        margin-top: 2.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .section p {
+        width: 100%;
+    }
+
+    .links {
+        display: flex;
+        column-gap: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+
+        .hero {
+            flex-direction: column;
+            row-gap: 1rem;
+            align-items: center;
+            text-align: center;
+        }
+    }
+</style>
+
+<h1>Hello World</h1>
+
+<div class="hero">
+    <img src="/assets/pfp.png" alt="pfp" class="pfp-img" />
+    <div>
+        <p>My name is Marco.</p>
+        <p>I'm building at intersection of art & technology.</p>
+        <p>I work with creators to bring their ideas to life.</p>
+    </div>
+</div>
+
+<div class="section">
+    <!-- <h2 style="margin-bottom:0.5rem;">Current Work</h2> -->
+    <p>I'm currently building <a href="https://transient.xyz" target="_blank">Transient Labs</a>, a platform dedicated
+        to helping creators push the boundaries of digital art. A lot of my focus is on how creators can use code and
+        the blockchain to enhance their creativity. I don't work in "NFTs", I work on the frontier of
+        digital art.
+    </p>
+    <div class="links">
+        <a href="/about"><button>Learn More</button></a>
+        <!-- <a href="/portfolio"><button class="primary">See my work</button></a> -->
+    </div>
+</div>
