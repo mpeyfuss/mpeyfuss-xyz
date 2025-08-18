@@ -1,6 +1,6 @@
 ---
 title: How to Read URLs
-tags: tech
+tags: blog
 date: 2024-01-29
 image: /assets/og/how_to_read_urls.png
 card: /assets/card/how_to_read_urls.png

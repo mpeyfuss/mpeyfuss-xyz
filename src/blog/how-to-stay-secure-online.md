@@ -1,6 +1,6 @@
 ---
 title: How to Stay Secure Online
-tags: tech
+tags: blog
 date: 2024-08-04
 image: /assets/og/how_to_stay_secure_online.png
 card: /assets/card/how_to_stay_secure_online.png
