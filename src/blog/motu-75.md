@@ -5,7 +5,7 @@ date: 2025-06-22
 image: /assets/og/motu_75.png
 card: /assets/card/motu_75.png
 layout: layout.njk
-published: true
+published: false
 ---
 ![moments of the unknown #75](/assets/og/motu_75.png)
 
