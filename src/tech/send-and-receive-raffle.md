@@ -1,5 +1,5 @@
 ---
-title: "Send & Receive: Raffle"
+title: "Send And Receive: Raffle"
 tags: tech
 date: 2025-09-10
 image: /assets/og/send_and_receive_raffle.png
@@ -9,7 +9,7 @@ published: true
 ---
 ![Send & Receive: Raffle](/assets/og/send_and_receive_raffle.png)
 
-# Send & Receive: Raffle
+# Send And Receive: Raffle
 
 *A variant of the Send And Receive contract primitives that implements a raffle mechanism*
 
