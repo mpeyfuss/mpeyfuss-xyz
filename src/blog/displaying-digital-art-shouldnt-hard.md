@@ -5,7 +5,7 @@ date: 2025-06-12
 image: /assets/og/digital_art_shouldnt_be_hard.png
 card: /assets/card/digital_art_shouldnt_be_hard.png
 layout: layout.njk
-published: true
+published: false
 ---
 ![digital art shouldn't be hard to display](/assets/og/digital_art_shouldnt_be_hard.png)
 

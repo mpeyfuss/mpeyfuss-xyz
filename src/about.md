@@ -14,11 +14,11 @@ That's where I can show off my superpower. I'm able to riff with creators, helpi
 In particular, I find myself having the most fun building with the blockchain and web experiences around that.
 
 ## Past Life
-I started off my career in mechanical engineering, with a focus on vehicle control systems. I spent a lot of time in college tearing cars apart and rebuilding a Camaro to be a hybrid vehicle.
+I started off my career in mechanical engineering, with a focus on vehicle control systems. I spent a lot of time in college tearing cars apart and putting them back together.
 
-After college, I went to work at Honda R&D for a few years testing engine systems at high altitude. Learned a lot, but ultimately, I ended up moving on when an opportunity opened up where my friend Ben worked.
+After college, I went to work at Honda for a few years testing engine systems at high altitude. Learned a lot, but ultimately, I ended up moving on when an opportunity opened up where my friend Ben worked.
 
-I then spent a year testing satellite components that went to space, included some parts that went on the Orion space capsules, to be used by real astronauts. Pretty cool in retrospect.
+I spent a year testing satellite components that went to space, included some parts that went on the Orion space capsules, to be used by real astronauts. Pretty cool in retrospect.
 
 So how did I end up in art? That's a good question.
 
