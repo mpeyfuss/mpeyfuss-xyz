@@ -2,12 +2,10 @@
 title: How to Stay Secure Online
 tags: blog
 date: 2024-08-04
-image: /assets/og/how_to_stay_secure_online.png
-card: /assets/card/how_to_stay_secure_online.png
 layout: layout.njk
+pinned: false
 published: true
 ---
-![How to Read URLs](/assets/og/how_to_stay_secure_online.png)
 
 # How to Stay Secure Online
 

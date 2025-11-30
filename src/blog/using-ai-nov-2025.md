@@ -2,12 +2,10 @@
 title: "How I use AI in 2025"
 tags: blog
 date: 2025-11-19
-image: /assets/og/how_i_use_ai_2025.png
-card: /assets/card/how_i_use_ai_2025.png
 layout: layout.njk
+pinned: true
 published: true
 ---
-![How I use AI in 2025](/assets/og/how_i_use_ai_2025.png)
 
 # How I use AI in 2025
 

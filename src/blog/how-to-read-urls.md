@@ -1,13 +1,11 @@
 ---
-title: How to Read URLs
+title: How to Read URLs Backwards to Stay Safe
 tags: blog
 date: 2024-01-29
-image: /assets/og/how_to_read_urls.png
-card: /assets/card/how_to_read_urls.png
 layout: layout.njk
+pinned: false
 published: true
 ---
-![How to Read URLs](/assets/og/how_to_read_urls.png)
 
 # How to Read URLs Backwards to Stay Safe
 

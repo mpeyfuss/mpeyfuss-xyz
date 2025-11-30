@@ -2,12 +2,10 @@
 title: The We Ethos
 tags: blog
 date: 2025-08-29
-image: /assets/og/the_we_ethos.png
-card: /assets/card/the_we_ethos.png
 layout: layout.njk
+pinned: false
 published: true
 ---
-![The We Ethos](/assets/og/the_we_ethos.png)
 
 # The We Ethos
 

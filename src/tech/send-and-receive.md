@@ -2,12 +2,10 @@
 title: Send & Receive Contract Deep Dive
 tags: tech
 date: 2025-06-10
-image: /assets/og/send_and_receive.png
-card: /assets/card/send_and_receive.png
 layout: layout.njk
 published: true
+pinned: true
 ---
-![Send & Receive Contract Deep Dive](/assets/og/send_and_receive.png)
 
 # Send & Receive Contract Deep Dive
 

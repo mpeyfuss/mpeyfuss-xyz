@@ -2,12 +2,10 @@
 title: "Send And Receive: Raffle"
 tags: tech
 date: 2025-09-10
-image: /assets/og/send_and_receive_raffle.png
-card: /assets/card/send_and_receive_raffle.png
 layout: layout.njk
 published: true
+pinned: false
 ---
-![Send & Receive: Raffle](/assets/og/send_and_receive_raffle.png)
 
 # Send And Receive: Raffle
 
