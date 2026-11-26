@@ -1,79 +1,360 @@
 ---
-title: Home
-image: /assets/og/default.png
-layout: layout.njk
+permalink: /index.html
+siteUrl: https://marcopeyfuss.com
+title: Marco Peyfuss
+description: Engineer building software where art, technology, and the blockchain meet.
+
+socials:
+  - label: GitHub
+    url: https://github.com/mpeyfuss
+  - label: X
+    url: https://x.com/mpeyfuss
+
+focus:
+  - title: Smart contracts
+    accent: var(--red)
+    body: Solidity on the EVM. Token standards, marketplaces, and contracts that let art do things it couldn't before.
+    tags: [Solidity, Foundry, EVM]
+  - title: Building with artists
+    accent: var(--amber)
+    body: Building experiences with artists and creators, both on and off chain, from the first idea through launch day.
+    tags: [Experiences, Launches, Operations]
+  - title: Backends & APIs
+    accent: var(--teal)
+    body: Python and Django, mostly. Typed, tested, and boring in the best way, so the interesting parts can be interesting.
+    tags: [Python, Django, Postgres]
+  - title: Security & recovery
+    accent: var(--violet)
+    body: Wallet security, supply-chain scanning, and tools for getting assets out of compromised accounts.
+    tags: [Flashbots, EIP-7702, Audits]
+
+projects:
+  - name: ETH Rescue
+    url: https://eth-rescue.marcopeyfuss.com
+    body: Recover tokens, NFTs, and contract ownership from a compromised Ethereum wallet using private Flashbots bundles.
+    tags: [Python, Solidity, React]
+  - name: murky-tree
+    url: https://github.com/mpeyfuss/murky-tree
+    body: A Python library for generating Merkle trees and Merkle proofs for Ethereum.
+    tags: [Python, PyPI]
+  - name: TL Creator Contracts
+    url: https://github.com/Transient-Labs/tl-creator-contracts
+    body: Sovereign smart contracts that let creators own and innovate on their own NFT contracts.
+    tags: [Solidity, ERC-721, ERC-1155]
+  - name: TL Stacks
+    url: https://github.com/Transient-Labs/tl-stacks
+    body: Sales and auction house contracts for selling NFTs.
+    tags: [Solidity, Auctions]
+  - name: Proof of Solve
+    url: https://github.com/mpeyfuss/proof-of-solve
+    body: A protocol for recording onchain when someone solves a puzzle-style challenge.
+    tags: [Solidity, Protocol]
+  - name: GIF Color Changer
+    url: https://mpeyfuss.github.io/gif-color-changer/
+    body: Swap individual colors in a GIF or overhaul its whole palette.
+    tags: [Python, CLI]
+
+background:
+  - when: Now
+    what: Transient Labs
+    detail: Building tools and an open marketplace for digital artists.
+  - when: Aerospace
+    what: Satellite component testing
+    detail: Tested hardware headed to space, including parts for the Orion capsule.
+  - when: Automotive
+    what: Honda
+    detail: Engine systems testing at high altitude.
+  - when: School
+    what: Mechanical engineering
+    detail: Vehicle control systems, and a lot of taking cars apart.
 ---
+{%- set arrow -%}
+<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+{%- endset -%}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title }}</title>
+  <meta name="description" content="{{ description }}" />
+  <link rel="canonical" href="{{ siteUrl }}/" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <meta name="theme-color" content="#f4f4f5" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0d0d0f" media="(prefers-color-scheme: dark)" />
 
-<style>
-    .hero {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        column-gap: 2rem;
-        align-items: center;
-        margin-top: 4.25rem;
-    }
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ siteUrl }}/" />
+  <meta property="og:title" content="{{ title }}" />
+  <meta property="og:description" content="{{ description }}" />
+  <meta property="og:image" content="{{ siteUrl }}/assets/pfp.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@mpeyfuss" />
 
-    .pfp-img {
-        width: 20rem;
-        border-radius: 100%;
-    }
+  <link rel="preload" href="/assets/fonts/dm-serif-text-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
 
-    .section {
-        text-align: start;
-        width: 100%;
-        margin-top: 2.25rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  <script>
+    // Apply a saved light/dark choice before first paint. No attribute = follow the OS.
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+  <style>
+{% include "styles.css" %}
+  </style>
+</head>
+<body>
+  <canvas id="nodes" aria-hidden="true"></canvas>
+  <script>
+    // Background: slow drifting nodes, linked by faint lines when close.
+    // Runs right after the canvas (not at the end of body) so the first frame is drawn before content paints.
+    (function () {
+      var canvas = document.getElementById("nodes");
+      var ctx = canvas.getContext && canvas.getContext("2d");
+      if (!ctx) return;
 
-    .section p {
-        width: 100%;
-    }
+      var LINK = 150; // max distance (px) for a connecting line
+      var DENSITY = 15000; // one node per this many square px
+      var MAX_NODES = 90;
+      var ACCENTS = ["--red", "--amber", "--teal", "--violet"];
+      var still = matchMedia("(prefers-reduced-motion: reduce)");
+      var nodes = [];
+      var w = 0, h = 0, raf = 0, last = 0;
+      var ink = "#888", accents = [];
 
-    .links {
-        display: flex;
-        column-gap: 1rem;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-    }
+      function readColors() {
+        var css = getComputedStyle(document.documentElement);
+        ink = css.getPropertyValue("--text").trim();
+        accents = ACCENTS.map(function (v) { return css.getPropertyValue(v).trim(); });
+      }
 
-    @media (max-width: 768px) {
+      function makeNode() {
+        var angle = Math.random() * Math.PI * 2;
+        var speed = 0.004 + Math.random() * 0.01; // px per ms, roughly 4-14 px/s
+        return {
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          r: 1 + Math.random() * 1.3,
+          accent: Math.random() < 0.18 ? Math.floor(Math.random() * ACCENTS.length) : -1,
+        };
+      }
 
-        .hero {
-            flex-direction: column;
-            row-gap: 1rem;
-            align-items: center;
-            text-align: center;
+      function resize() {
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = window.innerWidth;
+        h = window.innerHeight;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        var target = Math.min(MAX_NODES, Math.round((w * h) / DENSITY));
+        while (nodes.length < target) nodes.push(makeNode());
+        nodes.length = target;
+        nodes.forEach(function (n) {
+          n.x = Math.min(n.x, w);
+          n.y = Math.min(n.y, h);
+        });
+      }
+
+      function step(dt) {
+        var pad = 20;
+        nodes.forEach(function (n) {
+          n.x += n.vx * dt;
+          n.y += n.vy * dt;
+          if (n.x < -pad) n.x = w + pad;
+          else if (n.x > w + pad) n.x = -pad;
+          if (n.y < -pad) n.y = h + pad;
+          else if (n.y > h + pad) n.y = -pad;
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = ink;
+        for (var i = 0; i < nodes.length; i++) {
+          for (var j = i + 1; j < nodes.length; j++) {
+            var dx = nodes[i].x - nodes[j].x;
+            var dy = nodes[i].y - nodes[j].y;
+            var d2 = dx * dx + dy * dy;
+            if (d2 > LINK * LINK) continue;
+            ctx.globalAlpha = (1 - Math.sqrt(d2) / LINK) * 0.13;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
         }
-    }
-</style>
+        nodes.forEach(function (n) {
+          ctx.globalAlpha = n.accent < 0 ? 0.3 : 0.7;
+          ctx.fillStyle = n.accent < 0 ? ink : accents[n.accent];
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.accent < 0 ? n.r : n.r + 0.6, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        ctx.globalAlpha = 1;
+      }
 
-<h1>Hello</h1>
+      function frame(t) {
+        step(Math.max(0, Math.min(t - last, 50)));
+        last = t;
+        draw();
+        raf = requestAnimationFrame(frame);
+      }
 
-<div class="hero">
-    <img src="/assets/pfp.png" alt="pfp" class="pfp-img" />
-    <div>
-        <p>My name is Marco.</p>
-        <p>I'm an engineer at heart, curious about the world.</p>
-        <p>I work with creators to bring their ideas to life.</p>
+      function start() {
+        cancelAnimationFrame(raf);
+        raf = 0;
+        draw();
+        if (still.matches || document.hidden) return;
+        last = performance.now();
+        raf = requestAnimationFrame(frame);
+      }
+
+      function restyle() {
+        readColors();
+        if (!raf) draw();
+      }
+
+      readColors();
+      resize();
+      start();
+
+      var resizeTimer = 0;
+      window.addEventListener("resize", function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+          resize();
+          if (!raf) draw();
+        }, 100);
+      });
+      document.addEventListener("visibilitychange", start);
+      still.addEventListener("change", start);
+      matchMedia("(prefers-color-scheme: dark)").addEventListener("change", restyle);
+      new MutationObserver(restyle).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    })();
+  </script>
+  <header class="topbar">
+    <a class="wordmark" href="/">mpeyfuss</a>
+    <div class="theme-switch" role="group" aria-label="Theme">
+      <button type="button" data-choice="system">System</button>
+      <button type="button" data-choice="light">Light</button>
+      <button type="button" data-choice="dark">Dark</button>
     </div>
-</div>
+  </header>
 
-<div class="section">
-    <h2 style="margin-bottom:0.5rem;">Current Work</h2>
-    <p>I'm currently building <a href="https://transient.xyz" target="_blank">Transient Labs</a>,
-        pushing the boundaries of digital art. A lot of my focus is on how creators can use software and
-        the blockchain to enhance their creativity.
-    </p>
-    <p>We have done over $20 million in sales over the past 4 years. We built an open marketplace where artists can
-        self-publish and sell their digital artwork.</p>
-    <p>We also built a badass creative coding agent called <a href="https://juno.transient.xyz"
-            target="_blank">Juno</a>. It helps artists create with code. It's insanely fun
-        and cool.</p>
-    <div class="links">
-        <a href="/about"><button>Learn more</button></a>
-        <a href="/blog"><button class="primary">Read my blog</button></a>
+  <main>
+    <div class="hero">
+      <div>
+        <h1>Marco Peyfuss</h1>
+        <p class="lede">I build software where art, technology, and the blockchain meet, and I help creators turn ambitious ideas into things that ship.</p>
+        <div class="links">
+          {%- for s in socials %}
+          <a class="button{% if loop.first %} primary{% endif %}" href="{{ s.url }}" target="_blank" rel="noopener noreferrer">{{ s.label }} {{ arrow | safe }}</a>
+          {%- endfor %}
+        </div>
+      </div>
+      <div class="pfp">
+        <img src="/assets/pfp.png" width="460" height="460" alt="A hand-drawn sketch of Marco smiling at a laptop" />
+      </div>
     </div>
-</div>
+
+    <section aria-labelledby="focus">
+      <div class="section-head"><span class="num">01</span><h2 id="focus">What I like to work on</h2></div>
+      <div class="focus">
+        {%- for f in focus %}
+        <div class="card" style="--accent: {{ f.accent }}">
+          <h3>{{ f.title }}</h3>
+          <p>{{ f.body }}</p>
+          <ul class="tags">{% for t in f.tags %}<li>{{ t }}</li>{% endfor %}</ul>
+        </div>
+        {%- endfor %}
+      </div>
+    </section>
+
+    <section aria-labelledby="now">
+      <div class="section-head"><span class="num">02</span><h2 id="now">Currently</h2></div>
+      <div class="card feature">
+        <div>
+          <h3>Transient Labs</h3>
+          <p>We build an open marketplace where artists self-publish and sell their digital work, plus the contracts and tooling underneath it.</p>
+          <p>The focus is on how creators can use software and the blockchain to push their work further.</p>
+          <div class="links">
+            <a class="button" href="https://transient.xyz" target="_blank" rel="noopener noreferrer">transient.xyz {{ arrow | safe }}</a>
+          </div>
+        </div>
+        <dl class="stats">
+          <div class="stat"><dt>Artist sales</dt><dd>$20M+</dd></div>
+          <div class="stat"><dt>Started as</dt><dd>Two friends messing around with art</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section aria-labelledby="projects">
+      <div class="section-head"><span class="num">03</span><h2 id="projects">Projects</h2></div>
+      <div class="projects">
+        {%- for p in projects %}
+        <a class="card project" href="{{ p.url }}" target="_blank" rel="noopener noreferrer">
+          <div class="project-head"><h3>{{ p.name }}</h3>{{ arrow | safe }}</div>
+          <p>{{ p.body }}</p>
+          <ul class="tags">{% for t in p.tags %}<li>{{ t }}</li>{% endfor %}</ul>
+        </a>
+        {%- endfor %}
+      </div>
+    </section>
+
+    <section aria-labelledby="background">
+      <div class="section-head"><span class="num">04</span><h2 id="background">Background</h2></div>
+      <p class="muted" style="max-width: 40em; margin-bottom: 8px;">I started out in mechanical engineering, worked on cars and spacecraft, then found my way to smart contracts and never left.</p>
+      <ol class="timeline">
+        {%- for b in background %}
+        <li><div class="when">{{ b.when }}</div><div><strong>{{ b.what }}</strong><span>{{ b.detail }}</span></div></li>
+        {%- endfor %}
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© {% year %} Marco Peyfuss</span>
+      <nav aria-label="Elsewhere">
+        {%- for s in socials %}
+        <a href="{{ s.url }}" target="_blank" rel="noopener noreferrer">{{ s.label }}</a>
+        {%- endfor %}
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var buttons = document.querySelectorAll(".theme-switch button");
+      function current() {
+        return root.dataset.theme || "system";
+      }
+      function sync() {
+        buttons.forEach(function (b) {
+          b.setAttribute("aria-pressed", String(b.dataset.choice === current()));
+        });
+      }
+      buttons.forEach(function (b) {
+        b.addEventListener("click", function () {
+          var choice = b.dataset.choice;
+          try {
+            if (choice === "system") localStorage.removeItem("theme");
+            else localStorage.setItem("theme", choice);
+          } catch (e) {}
+          if (choice === "system") delete root.dataset.theme;
+          else root.dataset.theme = choice;
+          sync();
+        });
+      });
+      sync();
+    })();
+  </script>
+</body>
+</html>

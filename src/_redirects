@@ -1,0 +1,8 @@
+# Old pages from the previous site
+/about        /  301
+/blog         /  301
+/blog/*       /  301
+/tech         /  301
+/tech/*       /  301
+/portfolio    /  301
+/portfolio/*  /  301
